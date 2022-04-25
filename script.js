@@ -58,7 +58,7 @@ function request() {
           }
        }
 
-        request_data = JSON.stringify(request_json)
+        request_data = JSON.stringify(request_json, null, 4)
 			}
 
       console.log(request_data)    
