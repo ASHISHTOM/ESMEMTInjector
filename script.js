@@ -4,6 +4,7 @@ function request() {
     let payload = document.getElementById("payload").value;
     let esme_url = document.getElementById("esme_url").value;
     let sms_text = document.getElementById("sms_text").value;
+    let registered_delivery = document.getElementById("registered_delivery").value;
 	
 	let shortMessage = ""
 	if(lang === "0"){
@@ -42,7 +43,7 @@ function request() {
 			else {
 
         const request_json = {
-          featureId:"submit_sm",
+          ...(registered_delivery === "true"?{featureId:"synch_submit_sm"}:{featureId:"submit_sm"}),
           timeStamp:25062009103510,
           respUrl:"http://localhost:8082/ESME/TestServlet",
           parameters: {
@@ -53,7 +54,8 @@ function request() {
                 destinationAddr:11111111,
                 dataCoding: lang,
                 shortMessage: shortMessage,
-               ...(payload==="true"?{messagePayload: true}:{}) 
+               ...(payload==="true"?{messagePayload: true}:{}),
+               ...(registered_delivery === "true"?{registeredDelivery: 1}:{}) 
              }
           }
        }
