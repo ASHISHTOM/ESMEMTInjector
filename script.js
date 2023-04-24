@@ -58,8 +58,9 @@ function request() {
                     "</REQ>"
 		if(registered_delivery === "true){
 		    request_data = prettifyXml(request_xml2);
-		}		
+		}	else{	
         request_data = prettifyXml(request_xml);
+		}
 			}
 			else {
 
