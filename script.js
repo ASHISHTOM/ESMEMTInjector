@@ -40,6 +40,25 @@ function request() {
                       "</PARAMETERS>"+
                     "</REQ>"
         
+				request_xml2 = "<REQ>" +
+                      "<FEATURE>synch_submit_sm</FEATURE>" +
+                      "<TIME-STAMP>25062009103510</TIME-STAMP>" +
+                      "<PARAMETERS>" +
+                      "<REQ-TRANSACTION-ID>0</REQ-TRANSACTION-ID>"+
+                      "<SMSC-ID>airtel</SMSC-ID>" +
+                      "<SUBMIT-SM>" +
+                      "<SOURCE-ADDR>1234</SOURCE-ADDR>"+
+                      "<DESTINATION-ADDR>9945626828</DESTINATION-ADDR>"+
+                      "<ESM-CLASS>0</ESM-CLASS>"+
+                      "<concatenatedSMesmClass>0</concatenatedSMesmClass>"+
+                      "<DATA-CODING>"+lang+"</DATA-CODING>"+
+                      "<SHORT-MESSAGE>"+shortMessage+"</SHORT-MESSAGE>"+
+                      "</SUBMIT-SM>"+
+                      "</PARAMETERS>"+
+                    "</REQ>"
+		if(registered_delivery === "true){
+		    request_data = prettifyXml(request_xml2);
+		}		
         request_data = prettifyXml(request_xml);
 			}
 			else {
