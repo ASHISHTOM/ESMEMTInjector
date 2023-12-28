@@ -74,20 +74,34 @@ function request() {
 }
 
 
-function submit_request(){
-  
-  let esme_url = document.getElementById("esme_url").value;
-  let data = document.getElementById('request_packet').value;
+let copiedRequest = '';
 
-  fetch(esme_url, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {'Content-Type': 'application/json'}, 
-    body: data
-  }).then(res => {
-    console.log("Request complete! response:", res);
-  });
+function submit_request() {
+    let esme_url = document.getElementById("esme_url").value;
+    let data = document.getElementById('request_packet').value;
+    copiedRequest = data;
 
+    fetch(esme_url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { 'Content-Type': 'application/json' },
+        body: data
+    }).then(res => {
+        console.log("Request complete! response:", res);
+    });
+}
+
+function copyRequest() {
+    const textarea = document.getElementById('request_packet');
+    // Select the text content of the textarea
+    textarea.select();
+    textarea.setSelectionRange(0, 99999); /* For mobile devices */
+    // Copy the selected text to the clipboard
+    document.execCommand('copy');
+    // Deselect the text
+    window.getSelection().removeAllRanges();
+    // Optionally, provide user feedback
+    //alert('Request packet copied to clipboard!');
 }
 
 function validateForm(lang, payload, esme_url, sms_text) {
